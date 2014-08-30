@@ -13,7 +13,6 @@
 
         scope.simditor = new Simditor({
           textarea: element.children()[0],
-          placeholder: 'write something here...',
           pasteImage: true,
           toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent'],
           defaultImage: 'assets/images/image.png',
@@ -32,6 +31,13 @@
 
           ngModel.$setViewValue(html);
         }
+
+        var $target = element.find('.simditor-body');
+
+        ngModel.$render = function () {
+          scope.simditor.focus();
+          $target.prepend(ngModel.$viewValue);
+        };
 
         element.on('blur keyup change', function () {
           scope.$apply(readViewText);

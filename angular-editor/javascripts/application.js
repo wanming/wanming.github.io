@@ -7,8 +7,8 @@
     .module(appName, [
       'simditor'      
     ])
-    .controller('mainController', function () {
-
+    .controller('mainController', function ($scope) {
+      $scope.editor = 'tom';
     });  
 
 }(window));
